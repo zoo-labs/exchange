@@ -1,21 +1,11 @@
 import type { Address } from 'viem'
 
-/**
- * Full provider configuration including UX hints.
- *
- * `adapter` and `router` are read by the contract client.
- * `name` / `onboardingUrl` / `verifyUrl` are read by the UI to render
- * white-label-branded onboarding and verification flows.
- *
- * Any field may be null/undefined. A null `adapter` runs in pure-DeFi
- * mode; the UI hides regulated-asset controls entirely in that case.
- */
+/** Provider configuration. Mirrors lux/exchange's @l.x/provider/config. */
 export interface ProviderConfig {
   adapter: Address | null
   router: Address | null
   name: string | null
   onboardingUrl: string | null
-  verifyUrl: string | null
 }
 
 export const NULL_PROVIDER: ProviderConfig = {
@@ -23,27 +13,28 @@ export const NULL_PROVIDER: ProviderConfig = {
   router: null,
   name: null,
   onboardingUrl: null,
-  verifyUrl: null,
 }
 
-/** Read provider config from a white-label fork's environment variables.
- *  The `LIQUIDITY_PROVIDER_*` naming follows the generic finance term
- *  "liquidity provider" (market maker / regulated venue) — it is not a
- *  reference to any specific brand. */
+/**
+ * Env key convention (Vite-native):
+ *   VITE_LIQUIDITY_ADAPTER
+ *   VITE_LIQUIDITY_ROUTER
+ *   VITE_LIQUIDITY_NAME
+ *   VITE_LIQUIDITY_ONBOARDING_URL
+ *
+ * Pass `import.meta.env`. Missing keys → null fields → pass-through gate.
+ */
 export function readProviderConfig(env: Record<string, string | undefined>): ProviderConfig {
-  const adapter = (env.LIQUIDITY_PROVIDER_ADAPTER || '') as Address
-  const router  = (env.LIQUIDITY_PROVIDER_ROUTER  || '') as Address
+  const adapter = (env.VITE_LIQUIDITY_ADAPTER || '') as Address
+  const router  = (env.VITE_LIQUIDITY_ROUTER  || '') as Address
   return {
     adapter: adapter.length ? adapter : null,
     router:  router.length  ? router  : null,
-    name:           env.LIQUIDITY_PROVIDER_NAME           ?? null,
-    onboardingUrl:  env.LIQUIDITY_PROVIDER_ONBOARDING_URL ?? null,
-    verifyUrl:      env.LIQUIDITY_PROVIDER_VERIFY_URL     ?? null,
+    name:          env.VITE_LIQUIDITY_NAME          ?? null,
+    onboardingUrl: env.VITE_LIQUIDITY_ONBOARDING_URL ?? null,
   }
 }
 
-/** Build the onboarding URL with a return callback so the provider can
- *  send the user back to the swap page after KYC completes. */
 export function buildOnboardingUrl(cfg: ProviderConfig, returnUrl: string, traderAddress?: string): string | null {
   if (!cfg.onboardingUrl) return null
   const url = new URL(cfg.onboardingUrl)
