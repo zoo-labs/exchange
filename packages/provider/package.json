@@ -1,7 +1,7 @@
 {
-  "name": "@z.o/provider",
+  "name": "@l.x/provider",
   "version": "0.1.0",
-  "description": "Jurisdiction-neutral regulated-provider SDK for Zoo exchange forks.",
+  "description": "Jurisdiction-neutral regulated-provider SDK for any Lux/Zoo exchange fork.",
   "main": "src/index.ts",
   "types": "src/index.ts",
   "exports": {

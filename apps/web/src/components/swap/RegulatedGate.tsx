@@ -1,4 +1,4 @@
-import { RegulatedSwapGate } from '@z.o/provider/react'
+import { RegulatedSwapGate } from '@l.x/provider/react'
 import { providerClient, providerConfig } from 'src/lib/provider'
 import type { Address } from 'viem'
 

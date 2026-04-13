@@ -2,8 +2,8 @@
 // Uses import.meta.env (Vite) and VITE_* env key convention.
 
 import { createPublicClient, http } from 'viem'
-import { RegulatedProviderClient } from '@z.o/provider'
-import { readProviderConfig } from '@z.o/provider/config'
+import { RegulatedProviderClient } from '@l.x/provider'
+import { readProviderConfig } from '@l.x/provider/config'
 
 const env = (import.meta as ImportMeta & { env?: Record<string, string | undefined> }).env ?? {}
 
