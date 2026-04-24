@@ -1,0 +1,33 @@
+{
+  "name": "zoo-exchange",
+  "version": "0.0.0",
+  "devDependencies": {
+    "@biomejs/biome": "2.2.0",
+    "@types/node": "22.13.1",
+    "tslib": "2.3.0",
+    "typescript": "5.8.3"
+  },
+  "engines": {
+    "node": ">=22",
+    "npm": "please-use-pnpm"
+  },
+  "private": true,
+  "scripts": {
+    "mobile": "pnpm --dir apps/mobile"
+  },
+  "workspaces": [
+    "apps/*",
+    "pkgs/*"
+  ],
+  "packageManager": "pnpm@9.15.9",
+  "overrides": {
+    "@luxamm/sdk": "3.0.3"
+  },
+  "description": "Zoo Exchange — the DEX for Zoo Network",
+  "license": "BSD-3-Clause",
+  "author": "Zoo Labs Foundation Inc.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zooai/exchange.git"
+  }
+}

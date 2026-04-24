@@ -1,0 +1,9 @@
+appId: com.lux.exchange.dev
+---
+- launchApp
+- tapOn:
+    id: 'search-tokens-and-wallets'
+- 'scroll'
+- 'scroll'
+- 'scroll'
+- 'back'

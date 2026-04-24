@@ -1,0 +1,29 @@
+{
+  "name": "@zooai/exchange-web",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Zoo Exchange — thin shim over @luxfi/exchange + @zooai/brand.",
+  "license": "BSD-3-Clause",
+  "author": "Zoo Labs Foundation Inc.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@luxfi/exchange": "^1.0.8",
+    "@zooai/brand": "^1.2.0",
+    "@zooai/logo": "^1.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^4.7.0",
+    "typescript": "^5.8.3",
+    "vite": "^7.3.1"
+  }
+}
