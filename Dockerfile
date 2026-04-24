@@ -37,13 +37,11 @@ RUN apk add --no-cache curl && \
     (npm pack @zooai/brand@latest && tar -xzf zooai-brand-*.tgz --strip-components=1)
 RUN cp /tmp/zb/brand.json apps/web/public/brand.json
 
-# Zoo logo marks from @zooai/logo on npm (canonical: ~/work/zoo/logo).
-# SVG sources live under docs/assets/ in the published tarball.
-RUN mkdir -p /tmp/zl && cd /tmp/zl && \
-    (npm pack @zooai/logo@latest && tar -xzf zooai-logo-*.tgz --strip-components=1) && \
-    cp /tmp/zl/docs/assets/zoo-logo.svg        /app/apps/web/public/logo.svg && \
-    cp /tmp/zl/docs/assets/zoo-logo-mono.svg   /app/apps/web/public/favicon.svg && \
-    cp /tmp/zl/docs/assets/zoo-logo.svg        /app/apps/web/public/wordmark.svg
+# Zoo logo marks — bundled in brand-assets/ since @zooai/logo npm
+# package only ships dist/ (JS code), not the SVG sources.
+COPY brand-assets/logo.svg     apps/web/public/logo.svg
+COPY brand-assets/favicon.svg  apps/web/public/favicon.svg
+COPY brand-assets/wordmark.svg apps/web/public/wordmark.svg
 
 # Zoo CSP — narrows connect/img/frame sources to Zoo-owned + standard wallet endpoints.
 COPY csp.json apps/web/public/csp.json
